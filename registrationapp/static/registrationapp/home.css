@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.sanity.io/images/7i1ps9pf/production/198229d5d679552a391621cd8fb6801ffb7e9219-3578x2451.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px); /* Apply a blur effect to the background image */
+    z-index: -1; /* Send background behind other content */
+}
+.navbar {
+    background-color: rgb(74, 74, 74) !important; /* Remove transparency */
+    height: 70px; /* Increase navbar height */
+}
+.navbar-brand, .navbar-text {
+    color: #fff;
+    font-size: 24px; /* Increase font size */
+}
+.container {
+    max-width: 800px;
+    margin: 100px auto; /* Adjust margin to center content */
+    text-align: center;
+    color: #fff;
+    z-index: 1; /* Ensure content is above background */
+}
+.home-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+p {
+    font-size: 20px; /* Increase font size */
+    margin-bottom: 20px;
+}
+.btn-group {
+    margin-top: 20px;
+}
+
+.custom-btn {
+background-color: rgb(74, 74, 74);
+border-color: rgb(74, 74, 74);
+}
+
+.custom-btn:hover {
+background-color: rgb(54, 54, 54);
+border-color: rgb(54, 54, 54);
+}

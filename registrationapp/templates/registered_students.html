@@ -1,0 +1,110 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Students</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'registrationapp/registered.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="{% url 'home' %}" class="btn btn-back mb-3">&larr;</a>
+            <h2>Registered Students</h2>
+        </div>
+        <form method="get">
+            <input type="text" name="q" placeholder="Search by name" value="{{ query }}">
+            <select name="year">
+                <option value="">All Years</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+            </select>
+            <select name="department">
+                <option value="">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <div class="add-button">
+            <a href="{% url 'registration_form' %}">
+                <button>Add Student</button>
+            </a>
+        </div>
+        <br>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Mobile Number</th>
+                        <th>Address</th>
+                        <th>Date of Birth</th>
+                        <th>Nationality</th>
+                        <th>Year</th>
+                        <th>Department</th>
+                        <th>Gender</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.first_name }}</td>
+                        <td>{{ student.last_name }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.mobile_number }}</td>
+                        <td>{{ student.address }}</td>
+                        <td>{{ student.date_of_birth }}</td>
+                        <td>{{ student.nationality }}</td>
+                        <td>{{ student.year }}</td>
+                        <td>{{ student.department }}</td>
+                        <td>{{ student.gender }}</td>
+                        <td>
+                            <a href="{% url 'edit_student' student.id %}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" data-toggle="modal" data-target="#deleteModal{{ student.id }}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- Delete Confirmation Modal for Each Student -->
+                    <div class="modal fade" id="deleteModal{{ student.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Student</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete the student '{{ student.first_name }} {{ student.last_name }}'?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form method="post" action="{% url 'delete_student' student.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

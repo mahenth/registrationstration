@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(234, 234, 234);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.card {
+    border: none;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+    
+}
+.card-header {
+    background-color: rgb(74, 74, 74);
+    color: #fff;
+    border-radius: 0;
+    text-align: center;
+}
+.btn-back {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+}
+.btn-back:hover {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+.custom-btn {
+    background-color: rgb(74, 74, 74);
+    border-color: rgb(74, 74, 74);
+}
+
+.custom-btn:hover {
+    background-color: rgb(54, 54, 54);
+    border-color: rgb(54, 54, 54);
+}
+
+
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 5px;
+    border-color: #ced4da;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}

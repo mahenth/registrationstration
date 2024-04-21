@@ -1,0 +1,97 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'registrationapp/edit.css' %}">
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn btn-back mb-3">&larr; Home</a>
+        <h2>Edit Student</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label for="mobile_number">Mobile Number:</label>
+                {{ form.mobile_number }}
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                {{ form.address }}
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth:</label>
+                {{ form.date_of_birth }}
+            </div>
+            <div class="form-group">
+                <label for="nationality">Nationality:</label>
+                {{ form.nationality }}
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                {{ form.year }}
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <select id="department" name="department" class="form-control" required>
+                    <option value="Computer Science" {% if form.department.value == 'Computer Science' %} selected {% endif %}>Computer Science</option>
+                    <option value="Electrical Engineering" {% if form.department.value == 'Electrical Engineering' %} selected {% endif %}>Electrical Engineering</option>
+                    <option value="Mechanical Engineering" {% if form.department.value == 'Mechanical Engineering' %} selected {% endif %}>Mechanical Engineering</option>
+                    <option value="Civil Engineering" {% if form.department.value == 'Civil Engineering' %} selected {% endif %}>Civil Engineering</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" class="form-control" required>
+                    <option value="Male" {% if form.gender.value == 'Male' %} selected {% endif %}>Male</option>
+                    <option value="Female" {% if form.gender.value == 'Female' %} selected {% endif %}>Female</option>
+                    <option value="Other" {% if form.gender.value == 'Other' %} selected {% endif %}>Other</option>
+                </select>
+            </div>
+            <button type="button" onclick="openModal()" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 class="modal-title">Changes Saved Successfully!</h2>
+            </div>
+            <div class="modal-body">
+                <a href="{% url 'registered_students' %}" class="btn btn-back mt-3">&larr; Back to Registered Students</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open Modal Function
+        function openModal() {
+            var modal = document.getElementById('successModal');
+            modal.style.display = 'block';
+        }
+
+        // Close Modal Function
+        function closeModal() {
+            var modal = document.getElementById('successModal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
