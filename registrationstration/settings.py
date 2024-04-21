@@ -95,7 +95,11 @@ env = environ.Env()
 environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
-
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = True
+DB_NAME = env('DB_NAME')
+DB_USER = env('DB_USER')
+DB_PASSWORD = env('DB_PASSWORD')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
