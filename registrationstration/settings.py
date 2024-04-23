@@ -89,12 +89,11 @@ DATABASES = {
 }
 
 
-import environ
+import environ 
 
 env = environ.Env()
 environ.Env.read_env()
 
-SECRET_KEY = env('SECRET_KEY')
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 DB_NAME = env('DB_NAME')
